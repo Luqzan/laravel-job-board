@@ -25,6 +25,8 @@ class JobListingController extends Controller
             $query->where('salary', '<=', request('max_salary'));
         })->when(request('experience'), function ($query) {
             $query->where('experience', request('experience'));
+        })->when(request('category'), function ($query) {
+            $query->where('category', request('category'));
         });
 
         return view('jobListing.index', ['jobListings' => $jobListing->get()]);
