@@ -12,7 +12,14 @@ class JobListingController extends Controller
      */
     public function index()
     {
-        return view('jobListing.index', ['jobListings' => JobListing::all()]);
+        $jobListing = JobListing::query();
+
+        $jobListing->when(request('search'), function ($query) {
+            $query->where('title', 'LIKE', '%'.request('search').'%')
+                ->orWhere('description', 'LIKE', '%'.request('search').'%');
+        });
+
+        return view('jobListing.index', ['jobListings' => $jobListing->get()]);
     }
 
     /**
