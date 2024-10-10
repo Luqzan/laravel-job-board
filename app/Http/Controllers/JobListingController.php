@@ -20,7 +20,10 @@ class JobListingController extends Controller
             'category',
         );
 
-        return view('jobListing.index', ['jobListings' => JobListing::filter($filters)->get()]);
+        return view(
+            'jobListing.index',
+            ['jobListings' => JobListing::with('employer')->filter($filters)->get()]
+        );
     }
 
     /**
@@ -44,7 +47,7 @@ class JobListingController extends Controller
      */
     public function show(JobListing $jobListing)
     {
-        return view('jobListing.show', compact('jobListing'));
+        return view('jobListing.show', ['jobListing' => $jobListing->load('employer')]);
     }
 
     /**
