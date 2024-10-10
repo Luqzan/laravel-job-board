@@ -24,10 +24,26 @@
 				</div>
 
 				<div>
+					<form action="{{ route('my-job-applications.destroy', $application) }}" method="post">
+						@csrf
+						@method('DELETE')
 
+						<x-button>
+							Cancel
+						</x-button>
+					</form>
 				</div>
 			</div>
 		</x-job-card>
 	@empty
+		<div class="rounded-md border border-dashed border-slate-300 p-8">
+			<div class="text-center font-medium">
+				No job application yet
+			</div>
+
+			<div class="text-center">
+				Go find some jobs <a href="{{ route('job-listing.index') }}" class="text-indigo-500 hover:underline">here!</a>
+			</div>
+		</div>
 	@endforelse
 </x-layout>
