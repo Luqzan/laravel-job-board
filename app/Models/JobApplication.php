@@ -14,6 +14,7 @@ class JobApplication extends Model
         'expected_salary',
         'user_id',
         'job_listing_id',
+        'cv_path',
     ];
 
     public function jobListing(): BelongsTo
