@@ -8,13 +8,17 @@
 			@csrf
 
 			<div class="mb-8">
-				<label for="email" class="mb-2 block text-sm font-medium text-slate-900">Email</label>
+				<label for="email" class="mb-2 block text-sm font-medium text-slate-900">
+					Email
+				</label>
 
 				<x-text-input name="email" />
 			</div>
 
 			<div class="mb-8">
-				<label for="password" class="mb-2 block text-sm font-medium text-slate-900">Password</label>
+				<label for="password" class="mb-2 block text-sm font-medium text-slate-900">
+					Password
+				</label>
 
 				<x-text-input name="password" type="password" />
 			</div>
@@ -23,7 +27,9 @@
 				<div>
 					<div class="flex items-center space-x-2">
 						<input type="checkbox" name="remember" class="rounded-sm border border-slate-400">
-						<label for="remember">Remember me</label>
+						<label for="remember">
+							Remember me
+						</label>
 					</div>
 				</div>
 
@@ -34,7 +40,9 @@
 				</div>
 			</div>
 
-			<x-button class="w-full bg-green-50">Login</x-button>
+			<x-button class="w-full bg-green-50">
+				Login
+			</x-button>
 		</form>
 	</x-card>
 </x-layout>
