@@ -3,12 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\JobListing;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 
 class JobApplicationController extends Controller
 {
+    use AuthorizesRequests;
+
     public function create(JobListing $jobListing)
     {
+        $this->authorize('apply', $jobListing);
+
         return view('job_application.create', ['jobListing' => $jobListing]);
     }
 
