@@ -47,7 +47,10 @@ class JobListingController extends Controller
      */
     public function show(JobListing $jobListing)
     {
-        return view('jobListing.show', ['jobListing' => $jobListing->load('employer')]);
+        return view(
+            'jobListing.show',
+            ['jobListing' => $jobListing->load('employer.jobListing')]
+        );
     }
 
     /**
