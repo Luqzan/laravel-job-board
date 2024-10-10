@@ -12,24 +12,15 @@ class JobListingController extends Controller
      */
     public function index()
     {
-        $jobListing = JobListing::query();
+        $filters = request()->only(
+            'search',
+            'min_salary',
+            'max_salary',
+            'experience',
+            'category',
+        );
 
-        $jobListing->when(request('search'), function ($query) {
-            $query->where(function ($query) {
-                $query->where('title', 'LIKE', '%'.request('search').'%')
-                    ->orWhere('description', 'LIKE', '%'.request('search').'%');
-            });
-        })->when(request('min_salary'), function ($query) {
-            $query->where('salary', '>=', request('min_salary'));
-        })->when(request('max_salary'), function ($query) {
-            $query->where('salary', '<=', request('max_salary'));
-        })->when(request('experience'), function ($query) {
-            $query->where('experience', request('experience'));
-        })->when(request('category'), function ($query) {
-            $query->where('category', request('category'));
-        });
-
-        return view('jobListing.index', ['jobListings' => $jobListing->get()]);
+        return view('jobListing.index', ['jobListings' => JobListing::filter($filters)->get()]);
     }
 
     /**
