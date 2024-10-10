@@ -7,9 +7,6 @@ use Illuminate\Http\Request;
 
 class JobListingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $filters = request()->only(
