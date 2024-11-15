@@ -6,7 +6,6 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -50,9 +49,7 @@ class UserController extends Controller
             $user = User::create([
                 'email' => $validatedData['email'],
                 'name' => $validatedData['name'],
-                'email_verified_at' => now(),
                 'password' => Hash::make($validatedData['password']),
-                'remember_token' => Str::random(10),
             ]);
 
             if ($user) {
