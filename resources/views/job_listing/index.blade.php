@@ -23,15 +23,16 @@
         <div>
           <div class="mb-1 font-semibold">Experience</div>
 
-          <x-radio-group name="experieW
-				</div>
-
-				<div>
-					<div class="mb-1 font-semibold">Category
+          <x-radio-group name="experience"
+            :options="array_combine(array_map('ucfirst', \App\Models\JobListing::$experience), \App\Models\JobListing::$experience)" />
         </div>
 
-        <x-radio-group name="category" :options="\App\Models\JobListing::$category" />
-      </div>
+        <div>
+          <div class=" mb-1 font-semibold">Category
+          </div>
+
+          <x-radio-group name="category" :options="\App\Models\JobListing::$category" />
+        </div>
       </div>
 
       <x-button class="w-full">Filter</x-button>
@@ -39,12 +40,12 @@
   </x-card>
 
   @foreach ($jobListings as $jobListing)
-    <x-job-card class="mb-4" :jobListing="$jobListing">
-      <div>
-        <x-link-button :href="route('job-listing.show', $jobListing)">
-          Show
-        </x-link-button>
-      </div>
-    </x-job-card>
+  <x-job-card class="mb-4" :jobListing="$jobListing">
+    <div>
+      <x-link-button :href="route('job-listing.show', $jobListing)">
+        Show
+      </x-link-button>
+    </div>
+  </x-job-card>
   @endforeach
 </x-layout>

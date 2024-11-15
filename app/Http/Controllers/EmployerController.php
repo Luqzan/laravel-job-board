@@ -21,7 +21,7 @@ class EmployerController extends Controller
     {
         auth()->user()->employer()->create(
             $request->validate([
-                'company_name' => 'required|min:3|unique:employers,company_name,except,id',
+                'company_name' => 'required|min:3|unique:employers,company_name',
             ])
         );
 

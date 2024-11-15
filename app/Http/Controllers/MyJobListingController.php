@@ -8,12 +8,12 @@ class MyJobListingController extends Controller
 {
     public function index()
     {
-        return view('my-job-listing.index');
+        return view('my_job_listing.index');
     }
 
     public function create()
     {
-        //
+        return view('my_job_listing.create');
     }
 
     public function store(Request $request)
