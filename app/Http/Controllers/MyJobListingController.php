@@ -44,8 +44,10 @@ class MyJobListingController extends Controller
         return redirect()->route('my-job-listing.index')->with('success', 'Job updated successfully.');
     }
 
-    public function destroy(string $id)
+    public function destroy(JobListing $myJobListing)
     {
-        //
+        $myJobListing->delete();
+
+        return redirect()->route('my-job-listing.index')->with('success', 'Job deleted.');
     }
 }
