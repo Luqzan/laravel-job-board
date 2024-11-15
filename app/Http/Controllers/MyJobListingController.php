@@ -9,7 +9,7 @@ class MyJobListingController extends Controller
 {
     public function index()
     {
-        return view('my_job_listing.index');
+        return view('my_job_listing.index', ['jobListing' => auth()->user()->employer->jobListing()->with(['employer', 'jobApplications', 'jobApplications.user'])->get()]);
     }
 
     public function create()
