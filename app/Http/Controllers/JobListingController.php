@@ -19,7 +19,7 @@ class JobListingController extends Controller
 
         return view(
             'job_listing.index',
-            ['jobListings' => JobListing::with('employer')->filter($filters)->get()]
+            ['jobListings' => JobListing::with('employer')->latest()->filter($filters)->get()]
         );
     }
 
