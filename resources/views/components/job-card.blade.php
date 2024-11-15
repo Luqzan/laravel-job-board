@@ -10,6 +10,10 @@
 			<div>{{ $jobListing->employer->company_name }}</div>
 
 			<div>{{ $jobListing->location }}</div>
+
+			@if ($jobListing->deleted_at)
+			<span class="text-xs text-red-500">Deleted</span>
+			@endif
 		</div>
 
 		<div class="flex space-x-1 text-xs">

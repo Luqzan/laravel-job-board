@@ -11,7 +11,7 @@ class MyJobListingController extends Controller
     {
         $this->authorize('viewAnyEmployer', JobListing::class);
 
-        return view('my_job_listing.index', ['jobListing' => auth()->user()->employer->jobListing()->with(['employer', 'jobApplications', 'jobApplications.user'])->get()]);
+        return view('my_job_listing.index', ['jobListing' => auth()->user()->employer->jobListing()->with(['employer', 'jobApplications', 'jobApplications.user'])->withTrashed()->get()]);
     }
 
     public function create()
