@@ -9,11 +9,15 @@ class MyJobListingController extends Controller
 {
     public function index()
     {
+        $this->authorize('viewAnyEmployer', JobListing::class);
+
         return view('my_job_listing.index', ['jobListing' => auth()->user()->employer->jobListing()->with(['employer', 'jobApplications', 'jobApplications.user'])->get()]);
     }
 
     public function create()
     {
+        $this->authorize('create', JobListing::class);
+
         return view('my_job_listing.create');
     }
 
@@ -26,11 +30,15 @@ class MyJobListingController extends Controller
 
     public function edit(JobListing $myJobListing)
     {
+        $this->authorize('update', $myJobListing);
+
         return view('my_job_listing.edit', ['jobListing' => $myJobListing]);
     }
 
     public function update(JobListingRequest $request, JobListing $myJobListing)
     {
+        $this->authorize('update', $myJobListing);
+
         $myJobListing->update($request->validated());
 
         return redirect()->route('my-job-listing.index')->with('success', 'Job updated successfully.');
