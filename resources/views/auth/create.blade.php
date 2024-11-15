@@ -34,8 +34,8 @@
 				</div>
 
 				<div>
-					<a href="#" class="text-indigo-600 hover:underline">
-						Forget password?
+					<a href="{{route('user.create')}}" class="text-indigo-600 hover:underline">
+						Register
 					</a>
 				</div>
 			</div>
