@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\JobListingRequest;
 use App\Models\JobListing;
-use Illuminate\Http\Request;
 
 class MyJobListingController extends Controller
 {
@@ -17,35 +17,23 @@ class MyJobListingController extends Controller
         return view('my_job_listing.create');
     }
 
-    public function store(Request $request)
+    public function store(JobListingRequest $request)
     {
-        $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'location' => 'required|string|max:255',
-            'salary' => 'required|numeric|max:5000',
-            'description' => 'required|string',
-            'experience' => 'required|in:'.implode(',', JobListing::$experience),
-            'category' => 'required|in:'.implode(',', JobListing::$category),
-        ]);
-
-        auth()->user()->employer->jobListing()->create($validatedData);
+        auth()->user()->employer->jobListing()->create($request->validated());
 
         return redirect()->route('my-job-listing.index')->with('success', 'Job created successfully');
     }
 
-    public function show(string $id)
+    public function edit(JobListing $myJobListing)
     {
-        //
+        return view('my_job_listing.edit', ['jobListing' => $myJobListing]);
     }
 
-    public function edit(string $id)
+    public function update(JobListingRequest $request, JobListing $myJobListing)
     {
-        //
-    }
+        $myJobListing->update($request->validated());
 
-    public function update(Request $request, string $id)
-    {
-        //
+        return redirect()->route('my-job-listing.index')->with('success', 'Job updated successfully.');
     }
 
     public function destroy(string $id)

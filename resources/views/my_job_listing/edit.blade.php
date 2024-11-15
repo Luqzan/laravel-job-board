@@ -1,40 +1,41 @@
 <x-layout>
-  <x-breadcrumbs :links="['My Jobs' => route('my-job-listing.index'), 'Create' => '#']" class="mb-4" />
+  <x-breadcrumbs :links="['My Jobs' => route('my-job-listing.index'), 'Edit Job' => '#']" class="mb-4" />
 
   <x-card class="mb-8">
-    <form action="{{route('my-job-listing.store')}}" method="POST">
+    <form action="{{route('my-job-listing.update', $jobListing)}}" method="POST">
       @csrf
+      @method('PUT')
 
       <div class="mb-4 grid grid-cols-2 gap-4">
         <div>
           <x-label for="title" :required="true">Job Title</x-label>
-          <x-text-input name="title" />
+          <x-text-input name="title" :value="$jobListing->title" />
         </div>
 
         <div>
           <x-label for="location" :required="true">Location</x-label>
-          <x-text-input name="location" />
+          <x-text-input name="location" :value="$jobListing->location" />
         </div>
 
         <div class="col-span-2">
           <x-label for="salary" :required="true">Salary</x-label>
-          <x-text-input name="salary" type="number" />
+          <x-text-input name="salary" type="number" :value="$jobListing->salary" />
         </div>
 
         <div class="col-span-2">
           <x-label for="description" :required="true">Description</x-label>
-          <x-text-input name="description" type="textarea" />
+          <x-text-input name="description" type="textarea" :value="$jobListing->description" />
         </div>
 
         <div>
           <x-label for="experience" :required="true">Experience</x-label>
-          <x-radio-group name="experience" :value="old('experience')" :all-option="false"
+          <x-radio-group name="experience" :value="$jobListing->experience" :all-option="false"
             :options="array_combine(array_map('ucfirst', \App\Models\JobListing::$experience), \App\Models\JobListing::$experience)" />
         </div>
 
         <div>
           <x-label for="category" :required="true">Category</x-label>
-          <x-radio-group name="category" :value="old('category')" :all-option="false"
+          <x-radio-group name="category" :value="$jobListing->category" :all-option="false"
             :options="\App\Models\JobListing::$category" />
         </div>
 
